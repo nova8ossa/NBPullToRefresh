@@ -1,19 +1,19 @@
 //
-//  TestPullToRefreshTests.m
-//  TestPullToRefreshTests
+//  NBPullToRefreshDemoTests.m
+//  NBPullToRefreshDemoTests
 //
-//  Created by NOVA8OSSA on 15/7/29.
+//  Created by NOVA8OSSA on 15/7/30.
 //  Copyright (c) 2015年 NB. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface TestPullToRefreshTests : XCTestCase
+@interface NBPullToRefreshDemoTests : XCTestCase
 
 @end
 
-@implementation TestPullToRefreshTests
+@implementation NBPullToRefreshDemoTests
 
 - (void)setUp {
     [super setUp];

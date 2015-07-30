@@ -1,8 +1,8 @@
 //
 //  AppDelegate.h
-//  TestPullToRefresh
+//  NBPullToRefreshDemo
 //
-//  Created by NOVA8OSSA on 15/7/29.
+//  Created by NOVA8OSSA on 15/7/30.
 //  Copyright (c) 2015年 NB. All rights reserved.
 //
 
