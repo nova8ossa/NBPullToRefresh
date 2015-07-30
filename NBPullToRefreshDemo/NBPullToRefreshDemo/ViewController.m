@@ -25,8 +25,7 @@
     
     list = [NSMutableArray array];
     
-    CGRect rect = CGRectMake(0, 0, 300, 400);
-    listView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
+    listView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     listView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     listView.dataSource = self;
     listView.tableFooterView = [UIView new];
@@ -42,12 +41,6 @@
     }];
     listView.pullToRefreshView.imageView.image = [UIImage imageNamed:@"arrow"];
     listView.infiniteRefreshView.label.text = @"load more...";
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    listView.frame = self.view.bounds;
 }
 
 - (void)loadData:(BOOL)isLoadMore {
