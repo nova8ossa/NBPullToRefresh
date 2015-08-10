@@ -54,18 +54,20 @@
 
 - (void)generateData:(NSNumber *)numOfData {
     
-    [NSThread sleepForTimeInterval:1.];
-    for (NSInteger i = 0; i < numOfData.integerValue; i++) {
+    @autoreleasepool {
+        [NSThread sleepForTimeInterval:1.];
+        for (NSInteger i = 0; i < numOfData.integerValue; i++) {
+            
+            NSString *numString = [NSString stringWithFormat:@"%ld", (long)arc4random_uniform(100)];
+            [list addObject:numString];
+        }
         
-        NSString *numString = [NSString stringWithFormat:@"%ld", (long)arc4random_uniform(100)];
-        [list addObject:numString];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self->listView stopNBAnimating];
+            [self->listView reloadData];
+        });
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        [self->listView stopNBAnimating];
-        [self->listView reloadData];
-    });
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
