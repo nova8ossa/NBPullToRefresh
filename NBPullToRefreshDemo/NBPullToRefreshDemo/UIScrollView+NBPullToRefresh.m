@@ -22,6 +22,7 @@ static char NBInfiniteRefreshViewKey;
     
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [self addSubview:_indicatorView];
         
@@ -68,7 +69,7 @@ static char NBInfiniteRefreshViewKey;
     UIScrollView *scrollView = (UIScrollView *)self.superview;
     if (scrollView == object && scrollView.window && [keyPath isEqualToString:@"contentOffset"]) {
         CGPoint point = [[change objectForKey:NSKeyValueChangeNewKey] CGPointValue];
-        if (point.y < -NBPullToRefreshViewHeight) {
+        if (point.y <= -NBPullToRefreshViewHeight) {
             
             [UIView animateWithDuration:0.3 animations:^{
                 _imageView.transform = CGAffineTransformMakeRotation(M_PI);
@@ -110,6 +111,7 @@ static char NBInfiniteRefreshViewKey;
     
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [self addSubview:_indicatorView];
         
@@ -144,7 +146,7 @@ static char NBInfiniteRefreshViewKey;
     CGFloat contentHeight = scrollView.contentSize.height;
     CGRect rect = CGRectMake(0, contentHeight, scrollView.bounds.size.width, NBInfiniteRefreshViewHeight);
     self.frame = rect;
-    self.hidden = (contentHeight == 0);
+    self.hidden = (contentHeight == 0) || (contentHeight < scrollView.bounds.size.height);
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
@@ -173,7 +175,7 @@ static char NBInfiniteRefreshViewKey;
                     fix = point.y - (size.height - scrollView.bounds.size.height);
                 }
                 
-                if (!scrollView.isTracking && !_isLoading && fix > NBInfiniteRefreshViewHeight) {
+                if (!scrollView.isTracking && !_isLoading && fix >= NBInfiniteRefreshViewHeight && !self.hidden) {
                     self.isLoading = YES;
                     
                     void (^infiniteRefreshBLock)(void) = objc_getAssociatedObject(scrollView, &NBInfiniteRefreshBLockKey);
@@ -211,12 +213,11 @@ static char NBInfiniteRefreshViewKey;
 
 @implementation UIScrollView (NBPullToRefresh)
 
-- (void)resetInfiniteView {
+- (void)triggerPullToRefresh {
     
-    CGFloat contentHeight = self.contentSize.height;
-    CGRect rect = CGRectMake(0, contentHeight, self.bounds.size.width, NBInfiniteRefreshViewHeight);
-    self.infiniteRefreshView.frame = rect;
-    self.infiniteRefreshView.hidden = (contentHeight == 0);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.contentOffset = CGPointMake(self.contentOffset.x, -NBPullToRefreshViewHeight);
+    });
 }
 
 - (void)stopNBAnimating {

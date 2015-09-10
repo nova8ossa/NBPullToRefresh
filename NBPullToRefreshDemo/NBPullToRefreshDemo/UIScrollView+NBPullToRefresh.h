@@ -35,4 +35,6 @@
 - (void)addPullToRefresh:(void (^)(void))pullAction infiniteRefresh:(void (^)(void))infiniteAction;
 - (void)stopNBAnimating;
 
+- (void)triggerPullToRefresh;
+
 @end

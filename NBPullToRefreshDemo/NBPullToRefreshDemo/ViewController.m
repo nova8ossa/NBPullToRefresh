@@ -41,15 +41,19 @@
     }];
     listView.pullToRefreshView.imageView.image = [UIImage imageNamed:@"arrow"];
     listView.infiniteRefreshView.label.text = @"load more...";
+    
+    [listView triggerPullToRefresh];
 }
 
 - (void)loadData:(BOOL)isLoadMore {
+    
+    NSLog(@"%@", isLoadMore ? @"infinite load" : @"pull load");
     
     if (!isLoadMore) {
         [list removeAllObjects];
     }
     
-    [self performSelectorInBackground:@selector(generateData:) withObject:@(10)];
+    [self performSelectorInBackground:@selector(generateData:) withObject:@(20)];
 }
 
 - (void)generateData:(NSNumber *)numOfData {
