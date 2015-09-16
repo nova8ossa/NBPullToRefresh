@@ -20,12 +20,7 @@ Pod::Spec.new do |s|
   s.summary      = "A PullToRefresh Category used on iOS."
 
   s.description  = <<-DESC
-                   A longer description of NBPullToRefresh in Markdown format.
-
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
+                    a categroy of UIScrollView, implement pull to refresh and infinite refresh.
                    DESC
 
   s.homepage     = "https://github.com/nova8ossa/NBPullToRefresh"
@@ -116,7 +111,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  s.frameworks = 'UIKit', 'Foundation'
+  s.frameworks = "UIKit", "Foundation"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
@@ -128,7 +123,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
