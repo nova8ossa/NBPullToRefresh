@@ -7,6 +7,19 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+```objective-c
+    __weak typeof(self) weakSelf = self;
+    [tableView addPullToRefresh:^{
+        
+        [weakSelf loadData];
+    } infiniteRefresh:^{
+        
+        [weakSelf loadMore];
+    }];
+    
+    [tableView triggerPullToRefresh];
+```
+
 ## Requirements
 Category of UIScrollView.
 
