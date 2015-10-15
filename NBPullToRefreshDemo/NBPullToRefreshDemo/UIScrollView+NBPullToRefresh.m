@@ -48,6 +48,7 @@ static char NBInfiniteRefreshViewKey;
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     
     _indicatorView.center = CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.5);
     [_imageView sizeToFit];
@@ -134,6 +135,7 @@ static char NBInfiniteRefreshViewKey;
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     
     _indicatorView.center = CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.5);
     [_label sizeToFit];
